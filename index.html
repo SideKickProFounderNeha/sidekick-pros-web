@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidekick Pros | The Complete Bridge</title>
+    <style>
+        :root { --primary: #0047AB; --accent: #28A745; --dark: #0f172a; --bg: #f8fafc; }
+        body, html { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); }
+        #app-container { max-width: 450px; margin: 0 auto; min-height: 100vh; background: white; position: relative; box-shadow: 0 0 40px rgba(0,0,0,0.1); }
+
+        /* 1. BRANDED SPLASH SCREEN */
+        #screen-splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; z-index: 1000;
+        }
+
+        .screen { display: none; padding: 25px; flex-direction: column; animation: fadeIn 0.3s ease; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BUTTONS & UI */
+        .btn { padding: 18px; border-radius: 12px; border: none; font-weight: 800; font-size: 15px; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
+        .btn-green { background: var(--accent); color: white; width: 85%; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); }
+        .btn-blue { background: var(--primary); color: white; width: 100%; }
+        .btn-red { background: #fee2e2; color: #991b1b; border: 1px solid #f87171; font-size: 12px; }
+        
+        .glass-card { background: white; border-radius: 18px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        input, textarea { padding: 15px; border-radius: 10px; border: 1.5px solid #e2e8f0; margin-top: 8px; font-size: 16px; width: 100%; box-sizing: border-box; }
+        label { font-size: 13px; font-weight: 700; color: var(--primary); margin-top: 15px; display: block; }
+        
+        /* LEGAL & STATUS */
+        .legal-shield { font-size: 11px; background: #f1f5f9; padding: 12px; border-radius: 10px; margin-top: 15px; color: #475569; border-left: 4px solid var(--primary); line-height: 1.4; }
+        .status-tag { background: #fff3cd; color: #856404; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    
+    <div id="screen-splash">
+        <h1 style="font-size: 48px; font-weight: 900; line-height: 1; margin: 0;">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></h1>
+        <p style="margin: 25px 40px; font-size: 17px; opacity: 0.9;">Verified pros. Insured stores. Zero friction.</p>
+        <button class="btn btn-green" onclick="enterApp()">ENTER APP</button>
+    </div>
+
+    <div id="screen-reg" class="screen">
+        <h2 style="color:var(--primary)">Secure Registration</h2>
+        <label>Full Legal Name (for 1099 Tax)</label>
+        <input type="text" placeholder="John Doe">
+        <label>Email & Mobile</label>
+        <input type="email" placeholder="Email Address">
+        <input type="tel" placeholder="Mobile Number">
+        <div class="legal-shield">🛡️ Privacy Protected: Your data is only used for payroll and verification.</div>
+        <button class="btn btn-blue" onclick="showScreen('screen-role')">Continue</button>
+    </div>
+
+    <div id="screen-role" class="screen">
+        <h2>Who are you?</h2>
+        <div class="glass-card" onclick="showScreen('screen-sidekick-vault')" style="cursor:pointer; border-left: 6px solid var(--accent);">
+            <h3 style="margin:0">I am a Sidekick</h3>
+            <p style="font-size:14px; color:#666;">I want to work shifts at local stores.</p>
+        </div>
+        <div class="glass-card" onclick="showScreen('screen-owner-vault')" style="cursor:pointer; border-left: 6px solid var(--primary);">
+            <h3 style="margin:0">I am a Store Owner</h3>
+            <p style="font-size:14px; color:#666;">I want to hire verified professionals.</p>
+        </div>
+    </div>
+
+    <div id="screen-owner-vault" class="screen">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2 style="margin:0">Manager Dash</h2>
+            <button class="btn" style="padding:8px 15px; margin:0; font-size:10px; background:#eee;">Settings</button>
+        </div>
+        <button class="btn btn-green" style="width:100%;" onclick="alert('Opening Shift Creator...')">+ Post New Shift</button>
+        
+        <h3 style="margin-top:25px;">Active Contracts</h3>
+        <div class="glass-card">
+            <div style="display:flex; justify-content:space-between;">
+                <strong>Jose R. (Deli Specialist)</strong>
+                <span class="status-tag">AWAITING FUNDS</span>
+            </div>
+            <p style="font-size:12px; color:#666; margin:10px 0;">Total: $111.00 (Incl. Sidekick Pro Bridge Fee)</p>
+            <button class="btn btn-blue" onclick="processPayment()">FUND & BOOK SIDEKICK</button>
+        </div>
+    </div>
+
+    <div id="screen-chat" class="screen">
+        <h3>Secure Chat</h3>
+        <div style="flex-grow:1; min-height:300px; background:#f1f5f9; padding:15px; border-radius:15px; overflow-y:auto;">
+            <div style="background:white; padding:10px; border-radius:10px; font-size:13px; margin-bottom:10px; width:85%;">
+                <strong>Manager:</strong> Welcome! Please wear black non-slip shoes and arrive 15 min early.
+            </div>
+            <div style="background:#e3efff; padding:10px; border-radius:10px; font-size:13px; margin-bottom:10px; width:85%; margin-left:auto;">
+                <strong>Jose R:</strong> Copy that. Do you provide aprons?
+            </div>
+        </div>
+        <textarea placeholder="Ask about uniforms, parking, etc..." style="height:60px;"></textarea>
+        <button class="btn btn-blue">Send Message</button>
+        <div class="legal-shield" style="border-left-color: var(--accent);">
+            ✅ <strong>Bridge Rule:</strong> This chat is monitored for safety. Use it to confirm attire and timing.
+        </div>
+        <button class="btn" style="background:#666; color:white; width:100%;" onclick="showScreen('screen-owner-vault')">Back to Dash</button>
+    </div>
+
+    <div id="screen-sidekick-vault" class="screen">
+        <h2>Professional Vault</h2>
+        <div class="glass-card" style="border: 2px dashed #ccc; text-align:center;">
+            📸 Upload TABC / Food Handler Card
+            <input type="file" style="margin-top:10px;">
+        </div>
+        <div class="glass-card">
+            <p><strong>Expertise Quiz:</strong> Total is $15.75. Customer gives $20.00. Change?</p>
+            <input type="text" placeholder="Enter amount (e.g. 4.25)">
+        </div>
+        <div class="legal-shield">By clicking submit, you agree to be rated by managers and acknowledge the 48hr quality hold on funds.</div>
+        <button class="btn btn-blue" onclick="showScreen('screen-map')">Submit & Open Map</button>
+    </div>
+
+    <div id="screen-map" class="screen">
+        <h3 style="margin:0">Available Shifts <span style="color:var(--accent); float:right; font-size:11px;">● LIVE</span></h3>
+        <div style="height:220px; background:#e2e8f0; border-radius:15px; margin:15px 0; display:flex; align-items:center; justify-content:center; color:#64748b; border:2px solid #cbd5e1; font-weight:bold;">
+            📍 [Google Maps View Loading...]
+        </div>
+        <div class="glass-card">
+            <div style="display:flex; justify-content:space-between;">
+                <strong>Smiley's Deli</strong>
+                <span style="color:var(--accent); font-weight:bold;">$18.50/hr</span>
+            </div>
+            <p style="font-size:13px; color:#666;">Today, 2pm - 8pm | Deli Prep Specialist</p>
+            <button class="btn btn-blue" onclick="alert('Manager Notified! They will review your vault now.')">I'm Interested</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function enterApp() {
+        document.getElementById('screen-splash').style.display = 'none';
+        showScreen('screen-reg');
+    }
+
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    function processPayment() {
+        alert("Success! Funds held in Sidekick Pro Vault.\n\nJose R. has been notified: 'YOU ARE SELECTED!'\n\nOpening secure chat...");
+        showScreen('screen-chat');
+    }
+</script>
+</body>
+</html>
