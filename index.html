@@ -3,192 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sidekick Pros | The Secure Bridge</title>
+    <title>Sidekick Pros | Full Ecosystem</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0047AB; --accent: #28A745; --dark: #0f172a; --light: #f8fafc; --grey: #64748b; }
+        :root { --primary: #0047AB; --accent: #28A745; --dark: #0f172a; --grey: #64748b; }
         * { box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { margin: 0; background: var(--dark); color: var(--dark); overflow-x: hidden; }
-        
-        /* 1. LAYOUT & SCREENS */
-        .screen { display: none; min-height: 100vh; width: 100vw; max-width: 450px; margin: 0 auto; background: white; padding: 20px; flex-direction: column; position: relative; }
+        body { margin: 0; background: var(--dark); overflow-x: hidden; color: #1e293b; }
+        .screen { display: none; min-height: 100vh; width: 100vw; max-width: 450px; margin: 0 auto; background: white; padding: 20px; flex-direction: column; }
         .screen.active { display: flex; }
 
-        /* 2. SPLASH SCREEN (YOUR FAVORITE DESIGN) */
-        #screen-splash { 
-            display: flex; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1556740734-7f9a2b7a0f4d?auto=format&fit=crop&w=800');
-            background-size: cover; background-position: center; color: white; justify-content: center; align-items: center; text-align: center;
-        }
-        .splash-logo { font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 10px; }
-        .splash-sub { opacity: 0.9; font-size: 18px; margin: 20px 0; }
-
-        /* 3. BUTTONS & UI */
-        .btn { padding: 20px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; width: 100%; font-size: 16px; text-transform: uppercase; margin-top: 15px; }
-        .btn-green { background: var(--accent); color: white; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); }
-        .btn-blue { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0, 71, 171, 0.3); }
-        .btn-support { background: #f1f5f9; color: var(--primary); font-size: 12px; margin-top: 25px; border: 1px solid #e2e8f0; }
-        .btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
+        /* HEADER / SPLASH */
+        #screen-splash { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1556740734-7f9a2b7a0f4d?auto=format&fit=crop&w=800'); background-size: cover; background-position: center; color: white; justify-content: center; align-items: center; text-align: center; }
         
-        .card { background: white; border: 2px solid #f1f5f9; border-radius: 15px; padding: 20px; margin-bottom: 15px; text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); cursor: pointer; }
-        
-        input, select { width: 100%; padding: 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; margin-top: 5px; margin-bottom: 15px; }
+        /* UI COMPONENTS */
+        .btn { padding: 18px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; width: 100%; font-size: 15px; text-transform: uppercase; margin-top: 15px; }
+        .btn-green { background: var(--accent); color: white; }
+        .btn-blue { background: var(--primary); color: white; }
+        .card { background: white; border: 2px solid #f1f5f9; border-radius: 15px; padding: 15px; margin-bottom: 12px; cursor: pointer; }
+        input, select, textarea { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; margin-top: 5px; margin-bottom: 10px; font-size: 15px; }
         label { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; }
         
-        .legal-box { height: 75px; overflow-y: scroll; background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; font-size: 11px; border-radius: 8px; margin-bottom: 15px; color: var(--grey); }
-
-        /* 4. TABS */
-        .tab-wrap { display: flex; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; }
-        .tab { flex: 1; padding: 12px; text-align: center; font-weight: 700; cursor: pointer; color: #94a3b8; }
-        .tab.active { color: var(--primary); border-bottom: 3px solid var(--primary); }
+        /* SPECIAL SECTIONS */
+        .badge { background: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+        .test-box { background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 15px; }
+        .multi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
     <div id="screen-splash" class="screen active">
-        <div>
-            <div class="splash-logo">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></div>
-            <p class="splash-sub">Your time is your currency.<br>Your reliability is your reputation.</p>
-            <button id="btn-enter" class="btn btn-green">ENTER</button>
-        </div>
+        <h1 style="font-size: 42px; font-weight: 900; line-height: 1;">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></h1>
+        <p style="font-size:18px; margin:20px 0;">Your time is your currency.</p>
+        <button id="btn-enter" class="btn btn-green">ENTER</button>
     </div>
 
     <div id="screen-login" class="screen">
-        <div class="tab-wrap">
-            <div id="tab-signin" class="tab active">Sign In</div>
-            <div id="tab-signup" class="tab">Create Account</div>
+        <h2 style="color:var(--primary);">Identity Bridge</h2>
+        <label>Email</label><input type="email">
+        <label>Password</label><input type="password">
+        <label>Escrow & 1099 Agreement</label>
+        <div style="font-size:11px; background:#f1f5f9; padding:10px; border-radius:5px; margin-bottom:10px;">
+            - Funds held 24-48hrs post-shift for dispute resolution.<br>
+            - Sidekicks are independent contractors.
         </div>
-        
-        <h2 id="login-title" style="color:var(--primary); margin-top: 0;">Welcome Back</h2>
-        
-        <label>Email Address</label>
-        <input type="email" placeholder="name@email.com">
-
-        <label>Password</label>
-        <input type="password" placeholder="••••••••">
-
-        <div id="signup-extras" style="display: none;">
-            <label>1099 TERMS & WAIVER</label>
-            <div class="legal-box">
-                - Managers agree to 48hr fund holds for protection.<br>
-                - Sidekicks acknowledge 1099 contractor status.<br>
-                - Background checks and TABC must be valid.
-            </div>
-            <div style="display:flex; gap:12px; margin-bottom:20px; align-items: center;">
-                <input type="checkbox" id="terms-check" style="width:24px; height:24px; margin:0;">
-                <span style="font-size:13px; font-weight: 500;">I agree to the Terms.</span>
-            </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <input type="checkbox" id="terms-check" style="width:20px; height:20px; margin:0;">
+            <span style="font-size:13px;">I agree to the terms.</span>
         </div>
-
-        <button id="btn-login-submit" class="btn btn-blue">Continue</button>
-        
-        <button class="btn btn-support" onclick="window.location.href='sms:+15555555555?body=Hi Sidekick Pros! I need help.'">
-            💬 TEXT SUPPORT
-        </button>
+        <button id="btn-login" class="btn btn-blue">Continue</button>
     </div>
 
     <div id="screen-role" class="screen">
-        <h2 style="color:var(--primary); margin-top: 0;">Select Your Role</h2>
+        <h2>Choose Your Path</h2>
         <div id="pick-sidekick" class="card" style="border-left: 6px solid var(--accent)">
-            <h3 style="margin:0 0 5px 0;">I am a Sidekick</h3>
-            <p style="font-size:13px; color:var(--grey); margin:0;">I want to work shifts as a Pro.</p>
+            <h3>I am a Sidekick</h3>
+            <p style="font-size:12px; color:var(--grey);">I want to earn by working shifts.</p>
         </div>
         <div id="pick-owner" class="card" style="border-left: 6px solid var(--primary)">
-            <h3 style="margin:0 0 5px 0;">I am an Owner</h3>
-            <p style="font-size:13px; color:var(--grey); margin:0;">I want to hire vetted Sidekicks.</p>
+            <h3>I am a Manager/Owner</h3>
+            <p style="font-size:12px; color:var(--grey);">I want to hire vetted pros.</p>
         </div>
     </div>
 
-    <div id="screen-sidekick-vault" class="screen">
-        <h3 style="color:var(--accent); margin-top: 0;">Pro Onboarding</h3>
-        <label>TABC / Food Handler</label>
-        <input type="text" placeholder="Upload Link or Image">
-        <label>Primary Expertise</label>
-        <select><option>Cashier</option><option>Stocker</option><option>Deli Specialist</option></select>
-        <button id="btn-finish-sidekick" class="btn btn-green">Submit Profile</button>
+    <div id="screen-s-vault" class="screen">
+        <h2 style="color:var(--accent);">Pro Vault</h2>
+        <label>TABC Certificate</label><input type="file">
+        <label>Food Handlers</label><input type="file">
+        <label>Background Check Form</label><input type="file">
+        
+        <label>Select All Skills</label>
+        <div class="multi-grid">
+            <label style="color:#333;"><input type="checkbox"> Cashier</label>
+            <label style="color:#333;"><input type="checkbox"> Deli</label>
+            <label style="color:#333;"><input type="checkbox"> Stocker</label>
+            <label style="color:#333;"><input type="checkbox"> Security</label>
+        </div>
+        <button id="btn-to-test" class="btn btn-green">Next: Skill Test</button>
     </div>
 
-    <div id="screen-owner-vault" class="screen">
-        <h3 style="color:var(--primary); margin-top: 0;">Facility Onboarding</h3>
+    <div id="screen-test" class="screen">
+        <h2>Reliability Exam</h2>
+        <div class="test-box">
+            <p><strong>1. Math:</strong> If a customer buys $14.25 worth of goods and gives you $20.00, how much change is due?</p>
+            <input type="text" placeholder="Your answer">
+        </div>
+        <div class="test-box">
+            <p><strong>2. Common Sense:</strong> A co-worker is late and the line is getting long. Do you:</p>
+            <select><option>Wait for them</option><option>Start helping the next customer</option><option>Go on break</option></select>
+        </div>
+        <button id="btn-to-s-dash" class="btn btn-green">Finish & Submit</button>
+    </div>
+
+    <div id="screen-s-dash" class="screen">
+        <div style="display:flex; justify-content:space-between;">
+            <h3>Pro Dashboard</h3>
+            <span class="badge">Verification: Pending</span>
+        </div>
+        <div class="card" style="background:var(--accent); color:white; text-align:center;">
+            <p style="margin:0; font-size:12px;">Available Balance</p>
+            <h2 style="margin:5px 0;">$0.00</h2>
+            <p style="font-size:10px;">Funds held 48hrs post-shift for safety.</p>
+        </div>
+        <h4>Available Shifts</h4>
+        <p style="color:var(--grey); font-size:13px; text-align:center;">No shifts available in your area yet.</p>
+    </div>
+
+    <div id="screen-o-vault" class="screen">
+        <h2>Facility Setup</h2>
         <label>Facility Name</label><input type="text">
-        <label>EIN Number</label><input type="text" placeholder="XX-XXXXXXX">
-        <button id="btn-finish-owner" class="btn btn-blue">Complete Setup</button>
+        <label>EIN Number</label><input type="text">
+        <label>Manager Contact</label><input type="text">
+        <button id="btn-to-o-dash" class="btn btn-blue">Open Dashboard</button>
     </div>
 
-    <div id="screen-sidekick-dash" class="screen">
-        <h3 style="margin:0;">Pro Bridge</h3>
-        <div class="card" style="margin-top:20px; background: #f0fdf4;">
-            <strong>Status: Pending Review</strong>
-            <p style="font-size:12px; margin-top:5px;">We are verifying your credentials. You'll get a text shortly.</p>
+    <div id="screen-o-dash" class="screen">
+        <h3>Manager Portal</h3>
+        <div class="test-box" style="background:#eff6ff;">
+            <h4 style="margin:0;">Post New Shift</h4>
+            <label>Role Needed</label>
+            <select><option>Cashier</option><option>Deli Specialist</option></select>
+            <label>Pay Rate (Per Hour)</label>
+            <input type="number" placeholder="$18.00">
+            <label>Hours</label>
+            <input type="text" placeholder="e.g. 8am - 4pm">
+            <button class="btn btn-blue" style="font-size:12px; padding:10px;">Post to Map</button>
         </div>
-    </div>
-
-    <div id="screen-owner-dash" class="screen">
-        <h3 style="margin:0;">Owner Bridge</h3>
-        <button class="btn btn-blue" style="margin-top:20px;">+ Post New Shift</button>
+        <p style="font-size:11px; color:var(--grey); text-align:center;">*All payments processed through Sidekick Escrow.</p>
     </div>
 
     <script>
-        // --- THE "BRAIN" (SECURE & DIRECT) ---
+        // --- NAVIGATION BRAIN ---
+        const screens = {
+            splash: document.getElementById('screen-splash'),
+            login: document.getElementById('screen-login'),
+            role: document.getElementById('screen-role'),
+            sVault: document.getElementById('screen-s-vault'),
+            test: document.getElementById('screen-test'),
+            sDash: document.getElementById('screen-s-dash'),
+            oVault: document.getElementById('screen-o-vault'),
+            oDash: document.getElementById('screen-o-dash')
+        };
+
+        function show(target) {
+            Object.values(screens).forEach(s => s.classList.remove('active'));
+            screens[target].classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- BUTTON WIRING ---
+        document.getElementById('btn-enter').onclick = () => show('login');
+        document.getElementById('btn-login').onclick = () => show('role');
         
-        // 1. All Screens
-        const sSplash = document.getElementById('screen-splash');
-        const sLogin = document.getElementById('screen-login');
-        const sRole = document.getElementById('screen-role');
-        const sSVault = document.getElementById('screen-sidekick-vault');
-        const sOVault = document.getElementById('screen-owner-vault');
-        const sSDash = document.getElementById('screen-sidekick-dash');
-        const sODash = document.getElementById('screen-owner-dash');
-
-        // 2. Tab Logic
-        const tabIn = document.getElementById('tab-signin');
-        const tabUp = document.getElementById('tab-signup');
-        const signupExtras = document.getElementById('signup-extras');
-        const loginTitle = document.getElementById('login-title');
-
-        tabIn.onclick = function() {
-            tabIn.classList.add('active');
-            tabUp.classList.remove('active');
-            signupExtras.style.display = "none";
-            loginTitle.innerText = "Welcome Back";
-        };
-
-        tabUp.onclick = function() {
-            tabUp.classList.add('active');
-            tabIn.classList.remove('active');
-            signupExtras.style.display = "block";
-            loginTitle.innerText = "Create Account";
-        };
-
-        // 3. Navigation Buttons
-        document.getElementById('btn-enter').onclick = function() {
-            sSplash.style.display = 'none';
-            sLogin.classList.add('active');
-        };
-
-        document.getElementById('btn-login-submit').onclick = function() {
-            sLogin.classList.remove('active');
-            sRole.classList.add('active');
-        };
-
-        document.getElementById('pick-sidekick').onclick = function() {
-            sRole.classList.remove('active');
-            sSVault.classList.add('active');
-        };
-
-        document.getElementById('pick-owner').onclick = function() {
-            sRole.classList.remove('active');
-            sOVault.classList.add('active');
-        };
-
-        document.getElementById('btn-finish-sidekick').onclick = function() {
-            sSVault.classList.remove('active');
-            sSDash.classList.add('active');
-        };
-
-        document.getElementById('btn-finish-owner').onclick = function() {
-            sOVault.classList.remove('active');
-            sODash.classList.add('active');
-        };
+        document.getElementById('pick-sidekick').onclick = () => show('sVault');
+        document.getElementById('btn-to-test').onclick = () => show('test');
+        document.getElementById('btn-to-s-dash').onclick = () => show('sDash');
+        
+        document.getElementById('pick-owner').onclick = () => show('oVault');
+        document.getElementById('btn-to-o-dash').onclick = () => show('oDash');
     </script>
 </body>
 </html>
