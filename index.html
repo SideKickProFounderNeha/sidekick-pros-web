@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sidekick Pros | The Secure Bridge</title>
+    <title>Sidekick Pros | Full Ecosystem</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #0047AB; --accent: #28A745; --dark: #0f172a; --grey: #64748b; }
@@ -20,18 +20,18 @@
             background-size: cover; background-position: center; color: white; 
             justify-content: center; align-items: center; text-align: center; 
         }
-        .splash-logo { font-size: 42px; font-weight: 900; line-height: 1; }
         
         /* UI COMPONENTS */
         .btn { padding: 18px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; width: 100%; font-size: 15px; text-transform: uppercase; margin-top: 15px; }
         .btn-green { background: var(--accent); color: white; }
         .btn-blue { background: var(--primary); color: white; }
-        
         .card { background: white; border: 2px solid #f1f5f9; border-radius: 15px; padding: 15px; margin-bottom: 12px; cursor: pointer; border-left: 6px solid #ddd; }
-        input, select, textarea { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; margin-top: 5px; margin-bottom: 10px; font-size: 16px; }
+        input, select, textarea { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; margin-top: 5px; margin-bottom: 10px; font-size: 15px; }
         label { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; }
         
+        .badge { background: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 5px; font-size: 10px; font-weight: bold; }
         .test-box { background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 15px; }
+        .multi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
         .link-text { color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 14px; }
     </style>
 </head>
@@ -39,143 +39,140 @@
 
     <div id="screen-splash" class="screen active">
         <div>
-            <h1 class="splash-logo">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></h1>
+            <h1 style="font-size: 42px; font-weight: 900; line-height: 1;">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></h1>
             <p style="font-size:18px; margin:20px 0; opacity:0.9;">Your time is your currency.<br>Your reliability is your reputation.</p>
             <button id="btn-enter" class="btn btn-green">ENTER</button>
         </div>
     </div>
 
     <div id="screen-login" class="screen">
-        <h2 style="color:var(--primary); margin-bottom:5px;">Welcome Back</h2>
-        <p style="margin-bottom:20px;">New to Sidekick Pros? <span id="link-goto-signup" class="link-text">Set up an account</span></p>
+        <h2 style="color:var(--primary); margin-bottom:5px;">Identity Bridge</h2>
+        <p style="margin-bottom:20px;">New here? <span id="link-setup" class="link-text">Set up an account</span></p>
         
         <label>Email Address</label><input type="email" placeholder="name@email.com">
         <label>Password</label><input type="password" placeholder="••••••••">
         
-        <button id="btn-login-submit" class="btn btn-blue">Sign In</button>
-        
-        <button class="btn" style="background:#f1f5f9; color:var(--primary); margin-top:20px;" onclick="window.location.href='sms:+15555555555?body=Help!'">💬 TEXT SUPPORT</button>
+        <label>Escrow & 1099 Agreement</label>
+        <div style="font-size:11px; background:#f1f5f9; padding:10px; border-radius:5px; margin-bottom:10px;">
+            - Funds held 24-48hrs post-shift for dispute resolution.<br>
+            - Sidekicks are independent contractors.
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <input type="checkbox" id="terms-check" style="width:20px; height:20px; margin:0;">
+            <span style="font-size:13px;">I agree to the terms.</span>
+        </div>
+        <button id="btn-login" class="btn btn-blue">Continue</button>
+        <button class="btn" style="background:#f1f5f9; color:var(--primary); margin-top:20px;" onclick="window.location.href='sms:+15555555555'">💬 SUPPORT</button>
     </div>
 
     <div id="screen-role" class="screen">
-        <h2 style="color:var(--primary);">Identity Check</h2>
-        <p>Are you hiring or looking for work?</p>
-        
+        <h2>Choose Your Path</h2>
         <div id="pick-sidekick" class="card" style="border-left-color: var(--accent)">
             <h3>I am a Sidekick</h3>
-            <p style="font-size:12px; color:var(--grey);">I want to work shifts and get paid.</p>
+            <p style="font-size:12px; color:var(--grey);">I want to earn by working shifts.</p>
         </div>
-        
         <div id="pick-owner" class="card" style="border-left-color: var(--primary)">
             <h3>I am a Manager/Owner</h3>
-            <p style="font-size:12px; color:var(--grey);">I want to hire vetted Sidekicks.</p>
-        </div>
-
-        <div style="background:#fff4e5; padding:15px; border-radius:10px; font-size:12px; margin-top:10px; border:1px solid #ffd8a8;">
-            <strong>NOTE:</strong> All funds are held in escrow for 24-48 hours after shift completion to ensure quality and safety.
+            <p style="font-size:12px; color:var(--grey);">I want to hire vetted pros.</p>
         </div>
     </div>
 
     <div id="screen-s-vault" class="screen">
-        <h2 style="color:var(--accent);">Pro Onboarding</h2>
-        <label>TABC / Food Handler (Upload)</label><input type="file">
-        <label>Background Check Authorization</label><input type="file">
+        <h2 style="color:var(--accent);">Pro Vault</h2>
+        <label>TABC Certificate</label><input type="file">
+        <label>Food Handlers</label><input type="file">
+        <label>Background Check Form</label><input type="file">
         
-        <label style="margin-top:10px; display:block;">Select Your Skills (Select all that apply)</label>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:5px;">
+        <label>Select All Skills</label>
+        <div class="multi-grid">
             <label style="color:#333; text-transform:none;"><input type="checkbox"> Cashier</label>
-            <label style="color:#333; text-transform:none;"><input type="checkbox"> Deli/Food</label>
+            <label style="color:#333; text-transform:none;"><input type="checkbox"> Deli</label>
             <label style="color:#333; text-transform:none;"><input type="checkbox"> Stocker</label>
-            <label style="color:#333; text-transform:none;"><input type="checkbox"> Inventory</label>
+            <label style="color:#333; text-transform:none;"><input type="checkbox"> Security</label>
         </div>
-        
         <button id="btn-to-test" class="btn btn-green">Next: Skill Test</button>
     </div>
 
     <div id="screen-test" class="screen">
-        <h2>Vetting Exam</h2>
+        <h2>Reliability Exam</h2>
         <div class="test-box">
-            <p><strong>1. Math:</strong> A customer buys items for $12.40. They give you $20.00. How much change do they get?</p>
-            <input type="text" placeholder="Answer here">
+            <p><strong>1. Math:</strong> If a customer buys $14.25 worth of goods and gives you $20.00, how much change is due?</p>
+            <input type="text" placeholder="Your answer">
         </div>
         <div class="test-box">
-            <p><strong>2. Situational:</strong> A customer is angry about a wait time. Do you:</p>
-            <select>
-                <option>Ignore them</option>
-                <option>Apologize and assist them calmly</option>
-                <option>Argue back</option>
-            </select>
+            <p><strong>2. Common Sense:</strong> A co-worker is late and the line is getting long. Do you:</p>
+            <select><option>Wait for them</option><option>Start helping the next customer</option><option>Go on break</option></select>
         </div>
-        <button id="btn-to-s-dash" class="btn btn-green">Submit Application</button>
+        <button id="btn-to-s-dash" class="btn btn-green">Finish & Submit</button>
     </div>
 
     <div id="screen-s-dash" class="screen">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; justify-content:space-between;">
             <h3>Pro Dashboard</h3>
-            <span style="background:#fef3c7; color:#92400e; padding:5px 10px; border-radius:20px; font-size:10px; font-weight:bold;">PENDING REVIEW</span>
+            <span class="badge">Verification: Pending</span>
         </div>
         <div class="card" style="background:var(--accent); color:white; text-align:center; border:none;">
-            <p style="margin:0; font-size:12px; opacity:0.9;">Available Balance</p>
-            <h1 style="margin:5px 0;">$0.00</h1>
-            <p style="font-size:10px; margin:0;">24-48hr hold active on all new earnings.</p>
+            <p style="margin:0; font-size:12px;">Available Balance</p>
+            <h2 style="margin:5px 0;">$0.00</h2>
+            <p style="font-size:10px;">Funds held 48hrs post-shift for safety.</p>
         </div>
         <h4>Available Shifts</h4>
-        <p style="text-align:center; color:var(--grey); margin-top:20px;">Verification required to view the live map.</p>
+        <p style="color:var(--grey); font-size:13px; text-align:center;">No shifts available in your area yet.</p>
     </div>
 
     <div id="screen-o-vault" class="screen">
-        <h2 style="color:var(--primary);">Business Setup</h2>
+        <h2>Facility Setup</h2>
         <label>Facility Name</label><input type="text">
-        <label>EIN Number (Tax ID)</label><input type="text" placeholder="XX-XXXXXXX">
-        <label>Business Address</label><input type="text">
-        <button id="btn-to-o-dash" class="btn btn-blue">Enter Manager Portal</button>
+        <label>EIN Number</label><input type="text">
+        <label>Manager Contact</label><input type="text">
+        <button id="btn-to-o-dash" class="btn btn-blue">Open Dashboard</button>
     </div>
 
     <div id="screen-o-dash" class="screen">
         <h3>Manager Portal</h3>
-        <div class="test-box" style="background:#eff6ff; border-color:#bfdbfe;">
-            <h4 style="margin-top:0;">Post a New Shift</h4>
-            <label>Position</label>
-            <select><option>Cashier</option><option>Deli Specialist</option><option>General Labor</option></select>
+        <div class="test-box" style="background:#eff6ff;">
+            <h4 style="margin:0;">Post New Shift</h4>
+            <label>Role Needed</label>
+            <select><option>Cashier</option><option>Deli Specialist</option></select>
             <label>Pay Rate (Per Hour)</label>
             <input type="number" placeholder="$18.00">
-            <label>Shift Time</label>
-            <input type="text" placeholder="e.g. Saturday 10am-6pm">
-            <button class="btn btn-blue" style="font-size:12px; padding:12px;">Broadcast to Sidekicks</button>
+            <label>Hours</label>
+            <input type="text" placeholder="e.g. 8am - 4pm">
+            <button class="btn btn-blue" style="font-size:12px; padding:10px;">Post to Map</button>
         </div>
-        <p style="font-size:11px; color:var(--grey); text-align:center;">Payments are automatically secured via Sidekick Escrow.</p>
+        <p style="font-size:11px; color:var(--grey); text-align:center;">*All payments processed through Sidekick Escrow.</p>
     </div>
 
     <script>
-        // NAVIGATION LOGIC
-        const s = {
-            splash: document.getElementById('screen-splash'),
-            login: document.getElementById('screen-login'),
-            role: document.getElementById('screen-role'),
-            sVault: document.getElementById('screen-s-vault'),
-            test: document.getElementById('screen-test'),
-            sDash: document.getElementById('screen-s-dash'),
-            oVault: document.getElementById('screen-o-vault'),
-            oDash: document.getElementById('screen-o-dash')
+        // --- SECURE NAVIGATION ---
+        window.onload = function() {
+            const screens = {
+                splash: document.getElementById('screen-splash'),
+                login: document.getElementById('screen-login'),
+                role: document.getElementById('screen-role'),
+                sVault: document.getElementById('screen-s-vault'),
+                test: document.getElementById('screen-test'),
+                sDash: document.getElementById('screen-s-dash'),
+                oVault: document.getElementById('screen-o-vault'),
+                oDash: document.getElementById('screen-o-dash')
+            };
+
+            function show(target) {
+                Object.values(screens).forEach(s => s.style.display = 'none');
+                screens[target].style.display = 'flex';
+                window.scrollTo(0,0);
+            }
+
+            // Button Wiring
+            document.getElementById('btn-enter').onclick = () => show('login');
+            document.getElementById('link-setup').onclick = () => show('role');
+            document.getElementById('btn-login').onclick = () => show('role');
+            document.getElementById('pick-sidekick').onclick = () => show('sVault');
+            document.getElementById('btn-to-test').onclick = () => show('test');
+            document.getElementById('btn-to-s-dash').onclick = () => show('sDash');
+            document.getElementById('pick-owner').onclick = () => show('oVault');
+            document.getElementById('btn-to-o-dash').onclick = () => show('oDash');
         };
-
-        function nav(target) {
-            Object.values(s).forEach(screen => screen.classList.remove('active'));
-            s[target].classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        // BUTTONS
-        document.getElementById('btn-enter').onclick = () => nav('login');
-        document.getElementById('link-goto-signup').onclick = () => nav('role');
-        document.getElementById('btn-login-submit').onclick = () => nav('role');
-        
-        document.getElementById('pick-sidekick').onclick = () => nav('sVault');
-        document.getElementById('btn-to-test').onclick = () => nav('test');
-        document.getElementById('btn-to-s-dash').onclick = () => nav('sDash');
-        
-        document.getElementById('pick-owner').onclick = () => nav('oVault');
-        document.getElementById('btn-to-o-dash').onclick = () => nav('oDash');
     </script>
 </body>
 </html>
