@@ -27,6 +27,7 @@
         .btn { padding: 20px; border-radius: 12px; border: none; font-weight: 900; cursor: pointer; width: 100%; font-size: 16px; text-transform: uppercase; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .btn-green { background: var(--accent); color: white; }
         .btn-blue { background: var(--primary); color: white; }
+        .btn-support { background: #f1f5f9; color: var(--primary); font-size: 12px; margin-top: 25px; border: 1px solid #e2e8f0; box-shadow: none; }
         .btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
         
         .card { background: white; border: 2px solid #f1f5f9; border-radius: 15px; padding: 20px; margin-bottom: 15px; cursor: pointer; border-left: 6px solid #ddd; }
@@ -36,7 +37,7 @@
 </head>
 <body>
 
-    <div id="screen1" style="display: flex;" class="splash-container">
+    <div id="screen1" style="display: flex;">
         <div id="screen-splash">
             <h1 style="font-size: 42px; font-weight: 900; line-height: 1; margin: 0;">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></h1>
             <p style="font-size: 18px; margin: 20px 0; opacity: 0.9;">Your time is your currency.<br>Your reliability is your reputation.</p>
@@ -60,6 +61,10 @@
             <span style="font-size:14px;">I agree to the 1099 Terms.</span>
         </div>
         <button id="go-to-role" class="btn btn-blue" disabled>Continue</button>
+
+        <button class="btn btn-support" onclick="window.location.href='sms:+15555555555?body=Hi Sidekick Pros! I need help.'">
+            💬 TEXT SUPPORT
+        </button>
     </div>
 
     <div id="screen3" class="screen">
@@ -78,31 +83,27 @@
     <div id="screen5" class="screen"><h3>Owner Dashboard</h3><p>Status: Live</p></div>
 
     <script>
-        // DIRECT SCRIPTING TO BYPASS "EVAL" ERRORS
+        // DIRECT SCRIPTING (NO EVAL)
         const s1 = document.getElementById('screen1');
         const s2 = document.getElementById('screen2');
         const s3 = document.getElementById('screen3');
         const s4 = document.getElementById('screen4');
         const s5 = document.getElementById('screen5');
 
-        // Logic for ENTER button
         document.getElementById('go-to-login').onclick = function() {
             s1.style.display = 'none';
             s2.classList.add('active');
         };
 
-        // Logic for Checkbox
         document.getElementById('terms').onchange = function() {
             document.getElementById('go-to-role').disabled = !this.checked;
         };
 
-        // Logic for CONTINUE button
         document.getElementById('go-to-role').onclick = function() {
             s2.classList.remove('active');
             s3.classList.add('active');
         };
 
-        // Logic for Cards
         document.getElementById('pick-sidekick').onclick = function() {
             s3.classList.remove('active');
             s4.classList.add('active');
