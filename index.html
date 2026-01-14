@@ -186,3 +186,66 @@
     </script>
 </body>
 </html>
+<div id="screen-m-rate" class="screen bg-white p-8 pt-24 items-center">
+    <h2 class="text-2xl font-900 italic uppercase mb-2">Rate Sidekick</h2>
+    <p class="text-[10px] font-900 text-slate-400 uppercase mb-8">Shift: 7-Eleven #402</p>
+    
+    <div class="w-20 h-20 bg-slate-200 rounded-full mb-4 overflow-hidden">
+        <img src="https://i.pravatar.cc/150?u=sarah" class="w-full h-full object-cover">
+    </div>
+    <p class="font-900 mb-6">Sarah Jenkins</p>
+
+    <div class="flex space-x-2 mb-8 text-3xl text-slate-300" id="star-container">
+        <button onclick="setStars(1)">★</button>
+        <button onclick="setStars(2)">★</button>
+        <button onclick="setStars(3)">★</button>
+        <button onclick="setStars(4)">★</button>
+        <button onclick="setStars(5)">★</button>
+    </div>
+
+    <div class="w-full space-y-3 mb-8">
+        <label class="flex items-center p-4 bg-slate-50 rounded-xl border font-900 text-[10px]">
+            <input type="checkbox" class="mr-3 w-5 h-5"> ON TIME / PUNCTUAL
+        </label>
+        <label class="flex items-center p-4 bg-slate-50 rounded-xl border font-900 text-[10px]">
+            <input type="checkbox" class="mr-3 w-5 h-5"> FOLLOWED INSTRUCTIONS
+        </label>
+    </div>
+
+    <button onclick="submitRating('manager')" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase">Submit Review & Pay</button>
+</div>
+
+<div id="screen-s-rate" class="screen bg-white p-8 pt-24 items-center">
+    <h2 class="text-2xl font-900 italic uppercase mb-2">Rate Your Experience</h2>
+    <p class="text-[10px] font-900 text-slate-400 uppercase mb-8">Store: 7-Eleven #402</p>
+    
+    <div class="flex space-x-2 mb-8 text-3xl text-yellow-400">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-slate-200">★</span>
+    </div>
+
+    <textarea class="input-pill h-32 pt-4" placeholder="How was the manager? Was the work as described?"></textarea>
+
+    <button onclick="submitRating('sidekick')" class="w-full bg-green-600 text-white font-900 py-5 rounded-2xl uppercase">Submit & Complete</button>
+</div>
+
+<script>
+    // Star Rating Logic
+    function setStars(count) {
+        const stars = document.getElementById('star-container').children;
+        for(let i=0; i<stars.length; i++) {
+            stars[i].style.color = (i < count) ? '#fbbf24' : '#e2e8f0';
+        }
+    }
+
+    // This connects to your "Live Roster" - When Manager clicks "End Shift"
+    function endShiftManager() {
+        if(confirm("Are you sure? This will clock out the Sidekick and initiate payment.")) {
+            nav('m-rate');
+        }
+    }
+
+    function submitRating(type) {
+        alert("Review Submitted! Marketplace scores updated.");
+        nav(type === 'manager' ? 'dash-m' : 'dash-s');
+    }
+</script>
