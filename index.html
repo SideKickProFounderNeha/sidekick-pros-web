@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sidekick Pros | Complete Master</title>
+    <title>Sidekick Pros | Master Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -13,9 +13,7 @@
         .content-area { overflow-y: auto; flex: 1; padding: 1.5rem; padding-bottom: 100px; padding-top: 80px; }
         .input-pill { width: 100%; padding: 1.1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; font-size: 0.875rem; font-weight: 600; outline: none; margin-bottom: 0.8rem; }
         .legal-box { height: 250px; overflow-y: scroll; border: 2px solid #e2e8f0; padding: 15px; border-radius: 1rem; font-size: 11px; background: #fff; margin-bottom: 1rem; }
-        .card { background: white; border-radius: 1.5rem; padding: 1.25rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 1rem; border: 1px solid #e2e8f0; }
-        .quiz-option { width: 100%; text-align: left; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .quiz-option.selected { border-color: #22c55e; background: #f0fdf4; }
+        .card { background: white; border-radius: 1.5rem; padding: 1.25rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-bottom: 1rem; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
@@ -42,7 +40,7 @@
             <h2 class="text-3xl font-900 italic uppercase mb-8">Login</h2>
             <input type="email" placeholder="Email Address" class="input-pill">
             <input type="password" placeholder="Password" class="input-pill">
-            <button onclick="nav('dash-s')" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase text-[10px] mb-4">Sign In</button>
+            <button onclick="handleLogin()" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase text-[10px] mb-4">Sign In</button>
             <button onclick="nav('register')" class="w-full text-blue-600 font-900 uppercase text-[10px] underline">New User? Register</button>
         </div>
     </div>
@@ -51,15 +49,15 @@
         <div class="max-w-sm mx-auto w-full">
             <h2 class="text-3xl font-900 italic uppercase mb-2">Sign Up</h2>
             <p class="text-slate-400 text-[10px] font-900 uppercase mb-8">Create your profile</p>
-            <input type="text" id="reg-full-name" placeholder="Legal Full Name" class="input-pill">
-            <input type="email" placeholder="Email" class="input-pill">
+            <input type="text" id="reg-name" placeholder="Legal Full Name" class="input-pill">
+            <input type="email" placeholder="Email Address" class="input-pill">
             <input type="tel" placeholder="Phone Number" class="input-pill">
             <input type="password" placeholder="Create Password" class="input-pill">
             
             <p class="text-[9px] font-900 text-slate-400 uppercase mt-4 mb-2">Select Your Role:</p>
             <div class="flex gap-2 mb-8">
-                <button onclick="selectRole('sidekick')" id="role-s" class="flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200">Sidekick</button>
-                <button onclick="selectRole('manager')" id="role-m" class="flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200">Manager</button>
+                <button onclick="selectRole('sidekick')" id="role-s" class="flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200 text-slate-400">Sidekick</button>
+                <button onclick="selectRole('manager')" id="role-m" class="flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200 text-slate-400">Manager</button>
             </div>
             <button onclick="nav('legal')" class="w-full bg-blue-700 text-white font-900 py-5 rounded-2xl uppercase text-[10px]">Next: Terms & Waiver</button>
         </div>
@@ -68,171 +66,123 @@
     <div id="screen-legal" class="screen bg-slate-50 p-8 pt-24 overflow-y-auto">
         <h2 class="text-2xl font-900 italic uppercase mb-4">Master Agreement</h2>
         <div class="legal-box text-slate-700">
-            <p class="font-900 uppercase text-[10px] mb-2 text-blue-700">1. 1099 Contractor Status</p>
-            <p class="mb-4 text-xs italic">User is an Independent Contractor. Sidekick Pros does not provide benefits or withhold taxes.</p>
-            <p class="font-900 uppercase text-[10px] mb-2 text-blue-700">2. Liability Waiver</p>
-            <p class="mb-4 text-xs italic">User waives all claims for injuries sustained while on a shift procured through this platform.</p>
-            <p class="font-900 uppercase text-[10px] mb-2 text-blue-700">3. Data & Vetting</p>
-            <p class="text-xs italic">User authorizes background checks and the public display of ratings/resume to Managers.</p>
+            <p class="font-900 uppercase text-[10px] mb-2 text-blue-700 underline">1. 1099 Independent Contractor</p>
+            <p class="mb-4 text-xs italic">I understand I am signing up as an Independent Contractor (1099). Sidekick Pros is a platform, not an employer. I am responsible for my own taxes.</p>
+            <p class="font-900 uppercase text-[10px] mb-2 text-blue-700 underline">2. Waiver of Liability</p>
+            <p class="mb-4 text-xs italic">I voluntarily waive all claims against Sidekick Pros for any injuries or losses sustained while working a shift.</p>
+            <p class="font-900 uppercase text-[10px] mb-2 text-blue-700 underline">3. Data Authorization</p>
+            <p class="text-xs italic">I authorize Sidekick Pros to share my name, professional rating, and resume with business owners for hiring.</p>
         </div>
-        <label class="flex items-start space-x-3 p-4 bg-white rounded-2xl mb-6 border">
+        <label class="flex items-start space-x-3 p-4 bg-white rounded-2xl mb-6 border-2 border-slate-200">
             <input type="checkbox" id="legal-check" class="w-6 h-6 accent-green-600">
-            <span class="text-[10px] font-800 uppercase italic">I Agree to the Liability Waiver & 1099 Status</span>
+            <span class="text-[10px] font-800 uppercase italic leading-tight">I Agree to 1099 Status, Liability Waiver & Data Release.</span>
         </label>
-        <button onclick="finalizeLegal()" class="w-full bg-green-600 text-white font-900 py-5 rounded-2xl uppercase">Sign & Continue</button>
+        <button onclick="finalizeLegal()" class="w-full bg-green-600 text-white font-900 py-5 rounded-2xl uppercase">Execute & Finish</button>
     </div>
 
     <div id="screen-vault" class="screen bg-white p-8 pt-24 overflow-y-auto">
-        <h2 class="text-2xl font-900 italic uppercase mb-6">Sidekick Vault</h2>
-        <p class="text-[10px] font-900 uppercase text-slate-400 mb-2">Upload Resume (PDF)</p>
-        <input type="file" class="input-pill">
+        <h2 class="text-2xl font-900 italic uppercase mb-6">Pro Profile</h2>
         
-        <p class="text-[10px] font-900 uppercase text-slate-400 mt-6 mb-2">Your Skills:</p>
-        <div class="space-y-2 mb-8">
-            <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
-                <input type="checkbox" value="stocker" class="skill-check mr-3 w-5 h-5"> STOCKER / MERCHANDISER
-            </label>
-            <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
-                <input type="checkbox" value="cashier" class="skill-check mr-3 w-5 h-5"> CASHIER / POS EXPERT
-            </label>
-            <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
-                <input type="checkbox" value="deli" class="skill-check mr-3 w-5 h-5"> DELI / FOOD SPECIALIST
+        <div class="flex items-center space-x-4 mb-6 p-4 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+            <div id="photo-preview" class="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">👤</div>
+            <label class="bg-slate-900 text-white text-[8px] font-900 px-3 py-2 rounded-lg uppercase cursor-pointer">
+                Upload Photo <input type="file" accept="image/*" class="hidden" onchange="previewImg(this)">
             </label>
         </div>
-        <button onclick="processSkills()" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase">Save & Continue</button>
+
+        <p class="text-[10px] font-900 uppercase text-slate-400 mb-2">Update Resume (PDF)</p>
+        <input type="file" class="input-pill">
+
+        <p class="text-[10px] font-900 uppercase text-slate-400 mt-6 mb-2">Select Skills:</p>
+        <div class="space-y-2 mb-8" id="skills-list">
+            <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]"><input type="checkbox" value="stocker" class="skill-chk mr-3 w-5 h-5"> STOCKER</label>
+            <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]"><input type="checkbox" value="cashier" class="skill-chk mr-3 w-5 h-5"> CASHIER</label>
+            <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]"><input type="checkbox" value="deli" class="skill-chk mr-3 w-5 h-5"> DELI SPECIALIST</label>
+        </div>
+        <button onclick="handleSkills()" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase">Save & Continue</button>
     </div>
 
     <div id="screen-quiz" class="screen bg-white p-8 pt-24">
-        <h2 class="text-2xl font-900 italic uppercase text-orange-500">Logic Test</h2>
-        <p id="quiz-question" class="font-900 text-lg mt-8 mb-6">How do you handle X?</p>
-        <div id="quiz-options" class="space-y-2"></div>
+        <h2 class="text-2xl font-900 italic uppercase text-orange-500">Skill Test</h2>
+        <p id="q-text" class="font-900 text-lg mt-8 mb-6"></p>
+        <div id="q-options" class="space-y-2"></div>
         <button onclick="nav('dash-s')" class="mt-8 w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase">Submit Answer</button>
     </div>
 
     <div id="screen-dash-m" class="screen bg-slate-50 p-8 pt-24 overflow-y-auto">
         <h2 class="text-2xl font-900 italic uppercase">Manager Hub</h2>
-        <div class="bg-blue-700 p-6 rounded-[32px] text-white shadow-xl mt-6 mb-6">
-            <h3 class="font-900 text-xs uppercase mb-4">Add Store / EIN</h3>
-            <input type="text" id="loc-name" placeholder="Store Name" class="w-full p-4 rounded-xl text-slate-900 font-700 text-xs mb-2 outline-none">
-            <input type="text" id="loc-ein" placeholder="Federal EIN" class="w-full p-4 rounded-xl text-slate-900 font-700 text-xs mb-4 outline-none">
-            <button onclick="addLoc()" class="w-full bg-white text-blue-700 font-900 py-4 rounded-xl uppercase text-[9px]">Verify Location</button>
+        <div class="bg-blue-700 p-6 rounded-[32px] text-white shadow-xl mt-6">
+            <h3 class="font-900 text-[10px] uppercase mb-4">Register New Store</h3>
+            <input type="text" id="m-store-name" placeholder="Store Name" class="w-full p-4 rounded-xl text-slate-900 font-700 text-xs mb-2 outline-none">
+            <input type="text" id="m-store-ein" placeholder="Federal EIN" class="w-full p-4 rounded-xl text-slate-900 font-700 text-xs mb-4 outline-none">
+            <button onclick="addStore()" class="w-full bg-white text-blue-700 font-900 py-4 rounded-xl uppercase text-[9px]">Add Location</button>
         </div>
-        <div id="loc-list" class="space-y-2"></div>
+        <div id="store-list" class="mt-6 space-y-2"></div>
     </div>
 
     <div id="screen-dash-s" class="screen bg-slate-50 p-8 pt-24 overflow-y-auto">
-        <h2 class="text-2xl font-900 italic uppercase">Sidekick Hub</h2>
+        <h2 class="text-2xl font-900 italic uppercase leading-none">Sidekick Hub</h2>
         <div class="grid grid-cols-2 gap-3 mt-8">
-            <div class="card text-center" onclick="nav('vault')">
-                <span class="text-2xl">📂</span>
-                <p class="text-[9px] font-900 uppercase mt-2">Skills/Vault</p>
-            </div>
-            <div class="card text-center">
-                <span class="text-2xl">💰</span>
-                <p class="text-[9px] font-900 uppercase mt-2">Wallet</p>
-            </div>
+            <button onclick="nav('vault')" class="card text-center"><span class="text-xl">📂</span><p class="text-[9px] font-900 uppercase mt-2">Vault</p></button>
+            <button onclick="alert('Wallet Coming Soon')" class="card text-center"><span class="text-xl">💰</span><p class="text-[9px] font-900 uppercase mt-2">Wallet</p></button>
+            <button onclick="alert('History Coming Soon')" class="card text-center"><span class="text-xl">📜</span><p class="text-[9px] font-900 uppercase mt-2">History</p></button>
         </div>
     </div>
 
     <script>
         const screens = ['splash', 'login', 'register', 'legal', 'vault', 'quiz', 'dash-m', 'dash-s'];
-        const s = {};
-        screens.forEach(id => s[id] = document.getElementById('screen-' + id));
-        const navBar = document.getElementById('global-nav');
-        let appHistory = ['splash'];
-        let selectedRole = '';
+        const s = {}; screens.forEach(id => s[id] = document.getElementById('screen-' + id));
+        let history = ['splash'];
+        let role = '';
 
-        function nav(id, store = true) {
+        function nav(id, log = true) {
             Object.values(s).forEach(el => el.classList.remove('active'));
             s[id].classList.add('active');
-            if (['splash', 'login', 'register'].includes(id)) navBar.classList.add('hidden');
-            else navBar.classList.remove('hidden');
-            if (store && appHistory[appHistory.length - 1] !== id) appHistory.push(id);
+            if (['splash', 'login', 'register'].includes(id)) document.getElementById('global-nav').classList.add('hidden');
+            else document.getElementById('global-nav').classList.remove('hidden');
+            if (log && history[history.length-1] !== id) history.push(id);
         }
 
-        document.getElementById('btn-back').onclick = () => {
-            if (appHistory.length > 1) { appHistory.pop(); nav(appHistory[appHistory.length - 1], false); }
-        };
+        document.getElementById('btn-back').onclick = () => { if(history.length > 1) { history.pop(); nav(history[history.length-1], false); } };
 
-        function selectRole(role) {
-            selectedRole = role;
-            document.getElementById('role-s').className = role === 'sidekick' ? 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-blue-600 bg-blue-50 text-blue-600' : 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200';
-            document.getElementById('role-m').className = role === 'manager' ? 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-blue-600 bg-blue-50 text-blue-600' : 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200';
+        function selectRole(r) {
+            role = r;
+            document.getElementById('role-s').className = r === 'sidekick' ? 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-blue-600 bg-blue-50 text-blue-600' : 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200 text-slate-400';
+            document.getElementById('role-m').className = r === 'manager' ? 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-blue-600 bg-blue-50 text-blue-600' : 'flex-1 py-4 border-2 rounded-xl font-900 text-[10px] uppercase border-slate-200 text-slate-400';
         }
+
+        function handleLogin() { nav(role === 'manager' ? 'dash-m' : 'dash-s'); }
 
         function finalizeLegal() {
-            if(!document.getElementById('legal-check').checked) return alert("Please accept the terms.");
-            nav(selectedRole === 'manager' ? 'dash-m' : 'vault');
+            if(!document.getElementById('legal-check').checked) return alert("Accept terms.");
+            nav(role === 'manager' ? 'dash-m' : 'vault');
         }
 
-        function processSkills() {
-            const checks = Array.from(document.querySelectorAll('.skill-check:checked')).map(c => c.value);
+        function previewImg(input) {
+            if (input.files && input.files[0]) {
+                const r = new FileReader();
+                r.onload = e => document.getElementById('photo-preview').innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
+                r.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function handleSkills() {
+            const checks = Array.from(document.querySelectorAll('.skill-chk:checked')).map(c => c.value);
             if(checks.includes('cashier') || checks.includes('deli')) {
-                document.getElementById('quiz-question').innerText = checks.includes('cashier') ? "Customer total is $15.25. They pay with $20.00. What is the change?" : "When preparing food, what is the priority?";
+                document.getElementById('q-text').innerText = checks.includes('cashier') ? "Customer gives you $20 for a $14.50 total. Change?" : "Handwashing frequency?";
                 nav('quiz');
             } else { nav('dash-s'); }
         }
 
-        function addLoc() {
-            const n = document.getElementById('loc-name').value;
-            const e = document.getElementById('loc-ein').value;
-            if(!n || !e) return alert("Fill all fields.");
-            const div = document.createElement('div');
-            div.className = "card border-l-4 border-l-green-500 flex justify-between";
-            div.innerHTML = `<div><h4 class='font-900 text-[10px] uppercase'>${n}</h4><p class='text-[8px] font-700'>EIN: ${e}</p></div><span class='text-green-600 font-900 text-[9px]'>VERIFIED</span>`;
-            document.getElementById('loc-list').prepend(div);
+        function addStore() {
+            const n = document.getElementById('m-store-name').value;
+            const e = document.getElementById('m-store-ein').value;
+            if(!n || !e) return alert("Entry needed.");
+            const d = document.createElement('div');
+            d.className = "card border-l-4 border-l-green-500 flex justify-between items-center";
+            d.innerHTML = `<div><h4 class='font-900 text-[10px] uppercase'>${n}</h4><p class='text-[8px] font-700 uppercase opacity-50'>EIN: ${e}</p></div><span class='text-green-600 font-900 text-[8px]'>VERIFIED</span>`;
+            document.getElementById('store-list').prepend(d);
         }
     </script>
 </body>
 </html>
-<div id="screen-vault" class="screen bg-white p-8 pt-24 overflow-y-auto">
-    <h2 class="text-2xl font-900 italic uppercase mb-2">Pro Profile</h2>
-    <p class="text-[10px] font-900 text-slate-400 uppercase mb-8 tracking-widest">Setup Your Identity</p>
-    
-    <div class="flex items-center space-x-4 mb-8 p-4 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
-        <div id="photo-preview" class="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
-            <span class="text-2xl">👤</span>
-        </div>
-        <div class="flex-1">
-            <p class="text-[10px] font-900 uppercase text-slate-500 mb-2">Professional Photo</p>
-            <label class="bg-slate-900 text-white text-[9px] font-900 px-4 py-2 rounded-lg uppercase cursor-pointer">
-                Upload
-                <input type="file" id="input-photo" accept="image/*" class="hidden" onchange="previewImage(this)">
-            </label>
-        </div>
-    </div>
-
-    <p class="text-[10px] font-900 uppercase text-slate-400 mb-2">Professional Resume (PDF)</p>
-    <input type="file" class="input-pill">
-    
-    <p class="text-[10px] font-900 uppercase text-slate-400 mt-6 mb-2">Select Your Skills:</p>
-    <div class="space-y-2 mb-8">
-        <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
-            <input type="checkbox" value="stocker" class="skill-check mr-3 w-5 h-5"> STOCKER / MERCHANDISER
-        </label>
-        <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
-            <input type="checkbox" value="cashier" class="skill-check mr-3 w-5 h-5"> CASHIER / POS EXPERT
-        </label>
-        <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
-            <input type="checkbox" value="deli" class="skill-check mr-3 w-5 h-5"> DELI / FOOD SPECIALIST
-        </label>
-    </div>
-    
-    <button onclick="processSkills()" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase shadow-xl">Verify & Save Profile</button>
-</div>
-
-<script>
-    // New function for Image Preview
-    function previewImage(input) {
-        const preview = document.getElementById('photo-preview');
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    // (Keeping all previous processSkills, nav, and selectRole logic intact below)
-</script>
