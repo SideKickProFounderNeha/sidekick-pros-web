@@ -3,175 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sidekick Pros | Full Ecosystem</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Sidekick Pros | Secure Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0047AB; --accent: #28A745; --dark: #0f172a; --grey: #64748b; }
-        * { box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { margin: 0; background: var(--dark); overflow-x: hidden; color: #1e293b; }
-        
-        .screen { display: none; min-height: 100vh; width: 100vw; max-width: 450px; margin: 0 auto; background: white; padding: 20px; flex-direction: column; }
-        .screen.active { display: flex; }
-
-        /* LOCKED: PREMIUM SPLASH SCREEN */
-        #screen-splash { 
-            display: flex;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1556740734-7f9a2b7a0f4d?auto=format&fit=crop&w=800'); 
-            background-size: cover; background-position: center; color: white; 
-            justify-content: center; align-items: center; text-align: center; 
-        }
-        
-        /* UI COMPONENTS */
-        .btn { padding: 18px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; width: 100%; font-size: 15px; text-transform: uppercase; margin-top: 15px; }
-        .btn-green { background: var(--accent); color: white; }
-        .btn-blue { background: var(--primary); color: white; }
-        .card { background: white; border: 2px solid #f1f5f9; border-radius: 15px; padding: 15px; margin-bottom: 12px; cursor: pointer; border-left: 6px solid #ddd; }
-        input, select, textarea { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; margin-top: 5px; margin-bottom: 10px; font-size: 15px; }
-        label { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; }
-        
-        .badge { background: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 5px; font-size: 10px; font-weight: bold; }
-        .test-box { background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 15px; }
-        .multi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .link-text { color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 14px; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #1e293b; overflow: hidden; }
+        .screen { display: none; min-height: 100vh; width: 100%; flex-direction: column; position: relative; }
+        .active { display: flex; }
+        .map-bg { background: #cbd5e1 url('https://upload.wikimedia.org/wikipedia/commons/b/b0/OpenStreetMap_logo.svg') no-repeat center; background-size: cover; }
+        .legal-box { height: 120px; overflow-y: scroll; font-size: 11px; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+        /* Hide scrollbars but allow scrolling */
+        .content-area { overflow-y: auto; flex: 1; -ms-overflow-style: none; scrollbar-width: none; }
+        .content-area::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
 
-    <div id="screen-splash" class="screen active">
-        <div>
-            <h1 style="font-size: 42px; font-weight: 900; line-height: 1;">EVERYONE<br>NEEDS A<br><span style="color:var(--accent)">SIDEKICK!</span></h1>
-            <p style="font-size:18px; margin:20px 0; opacity:0.9;">Your time is your currency.<br>Your reliability is your reputation.</p>
-            <button id="btn-enter" class="btn btn-green">ENTER</button>
+    <nav id="global-nav" class="hidden fixed top-0 left-0 right-0 bg-white border-b z-50 px-6 py-4 flex justify-between items-center">
+        <button id="btn-back" class="text-[10px] font-900 uppercase tracking-widest text-slate-400 flex items-center">
+            <span class="mr-1">←</span> Back
+        </button>
+        <div class="text-center">
+            <h1 class="text-xs font-900 uppercase italic tracking-tighter">Sidekick <span class="text-green-500">Pros</span></h1>
+        </div>
+        <button id="btn-signout" class="text-[10px] font-900 uppercase tracking-widest text-red-500">
+            Sign Out
+        </button>
+    </nav>
+
+    <div id="screen-splash" class="screen active items-center justify-center text-center p-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.9)), url('https://images.unsplash.com/photo-1556740734-7f9a2b7a0f4d?auto=format&fit=crop&w=800');">
+        <h1 class="text-6xl font-900 text-white uppercase italic leading-none tracking-tighter">Sidekick<br><span class="text-green-500">Pros</span></h1>
+        <p class="text-white/50 text-xs mt-4 uppercase tracking-[0.3em]">Verified Retail Labor</p>
+        <button id="btn-enter" class="mt-12 w-full max-w-xs bg-green-500 text-white font-900 py-5 rounded-2xl shadow-2xl uppercase tracking-widest active:scale-95 transition-all">Get Started</button>
+    </div>
+
+    <div id="screen-login" class="screen bg-white p-8 justify-center">
+        <h2 class="text-3xl font-900 italic uppercase">Identity</h2>
+        <p class="text-slate-400 text-xs font-700 uppercase mb-8">Select your account type</p>
+        <div class="space-y-4">
+            <button id="pick-sidekick" class="w-full text-left bg-white border-2 border-l-8 border-l-green-500 p-6 rounded-2xl shadow-sm">
+                <h3 class="font-900">Sidekick (Contractor)</h3>
+                <p class="text-slate-500 text-xs">Find shifts and build your reputation.</p>
+            </button>
+            <button id="pick-manager" class="w-full text-left bg-white border-2 border-l-8 border-l-blue-700 p-6 rounded-2xl shadow-sm">
+                <h3 class="font-900">Manager (Business)</h3>
+                <p class="text-slate-500 text-xs">Post shifts and hire verified pros.</p>
+            </button>
         </div>
     </div>
 
-    <div id="screen-login" class="screen">
-        <h2 style="color:var(--primary); margin-bottom:5px;">Identity Bridge</h2>
-        <p style="margin-bottom:20px;">New here? <span id="link-setup" class="link-text">Set up an account</span></p>
-        
-        <label>Email Address</label><input type="email" placeholder="name@email.com">
-        <label>Password</label><input type="password" placeholder="••••••••">
-        
-        <label>Escrow & 1099 Agreement</label>
-        <div style="font-size:11px; background:#f1f5f9; padding:10px; border-radius:5px; margin-bottom:10px;">
-            - Funds held 24-48hrs post-shift for dispute resolution.<br>
-            - Sidekicks are independent contractors.
+    <div id="screen-legal" class="screen bg-white p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 italic uppercase">Legal Bridge</h2>
+        <p id="legal-type" class="text-[10px] font-900 text-blue-600 uppercase tracking-widest mt-1">Liability Agreement</p>
+        <div class="mt-6 legal-box" id="legal-content"></div>
+        <div class="mt-6 space-y-4">
+            <label class="flex items-start space-x-3">
+                <input type="checkbox" id="legal-check" class="mt-1 w-5 h-5 accent-blue-600">
+                <span class="text-[10px] text-slate-500 font-700 uppercase leading-tight">I agree to all liability waivers and terms of service.</span>
+            </label>
+            <input type="text" id="legal-sig" placeholder="Type Full Name to Sign" class="w-full p-4 bg-slate-50 border rounded-xl text-xs font-900 italic">
         </div>
-        <div style="display:flex; gap:10px; align-items:center;">
-            <input type="checkbox" id="terms-check" style="width:20px; height:20px; margin:0;">
-            <span style="font-size:13px;">I agree to the terms.</span>
-        </div>
-        <button id="btn-login" class="btn btn-blue">Continue</button>
-        <button class="btn" style="background:#f1f5f9; color:var(--primary); margin-top:20px;" onclick="window.location.href='sms:+15555555555'">💬 SUPPORT</button>
+        <button id="btn-legal-next" class="mt-8 w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase tracking-widest text-xs">Accept & Continue</button>
     </div>
 
-    <div id="screen-role" class="screen">
-        <h2>Choose Your Path</h2>
-        <div id="pick-sidekick" class="card" style="border-left-color: var(--accent)">
-            <h3>I am a Sidekick</h3>
-            <p style="font-size:12px; color:var(--grey);">I want to earn by working shifts.</p>
+    <div id="screen-vault" class="screen bg-white p-8 pt-24 overflow-y-auto pb-20">
+        <h2 class="text-2xl font-900 text-green-600 italic uppercase">The Pro Vault</h2>
+        <div class="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-100">
+            <p class="text-[10px] font-900 text-blue-800 uppercase mb-2 font-bold italic">Safety: Checkr.com Integration</p>
+            <button onclick="window.open('https://checkr.com')" class="w-full bg-blue-600 text-white text-[10px] font-900 py-3 rounded-xl uppercase">Start Background Check</button>
         </div>
-        <div id="pick-owner" class="card" style="border-left-color: var(--primary)">
-            <h3>I am a Manager/Owner</h3>
-            <p style="font-size:12px; color:var(--grey);">I want to hire vetted pros.</p>
+        <div class="mt-8 space-y-6">
+            <label class="block"><span class="text-[10px] font-900 text-slate-400 uppercase tracking-widest">TABC / Food Cert</span><input type="file" class="mt-1 block w-full text-xs"></label>
+            <hr class="border-slate-100">
+            <div>
+                <h4 class="text-xs font-900 uppercase mb-3 tracking-widest">Work History</h4>
+                <div class="space-y-3">
+                    <input type="text" placeholder="Previous Store (e.g. Circle K)" class="w-full p-4 bg-slate-50 border rounded-xl text-xs font-600 outline-none focus:border-green-500">
+                    <textarea placeholder="List specific retail skills (NCR, Deli, Stocking)" class="w-full p-4 bg-slate-50 border rounded-xl text-xs font-600 h-20 outline-none focus:border-green-500"></textarea>
+                </div>
+            </div>
+        </div>
+        <button id="btn-vault-next" class="mt-10 w-full bg-green-500 text-white font-900 py-5 rounded-2xl uppercase">Submit Portfolio</button>
+    </div>
+
+    <div id="screen-map" class="screen relative h-screen">
+        <div class="flex-1 map-bg"></div>
+        <div class="absolute bottom-24 left-6 right-6 p-6 bg-white rounded-3xl shadow-2xl border border-slate-100">
+            <div class="flex justify-between items-center">
+                <h3 class="font-900 text-lg uppercase italic">7-Eleven #402</h3>
+                <span class="text-green-600 font-900">$18/hr</span>
+            </div>
+            <button id="btn-apply" class="mt-4 w-full bg-blue-700 text-white font-900 py-4 rounded-xl uppercase text-xs tracking-widest shadow-lg">Apply for Shift</button>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-around items-center h-20">
+            <button class="text-blue-600 font-900 text-[10px] uppercase">Map</button>
+            <button id="btn-go-wallet" class="text-slate-400 font-900 text-[10px] uppercase">Wallet</button>
         </div>
     </div>
 
-    <div id="screen-s-vault" class="screen">
-        <h2 style="color:var(--accent);">Pro Vault</h2>
-        <label>TABC Certificate</label><input type="file">
-        <label>Food Handlers</label><input type="file">
-        <label>Background Check Form</label><input type="file">
-        
-        <label>Select All Skills</label>
-        <div class="multi-grid">
-            <label style="color:#333; text-transform:none;"><input type="checkbox"> Cashier</label>
-            <label style="color:#333; text-transform:none;"><input type="checkbox"> Deli</label>
-            <label style="color:#333; text-transform:none;"><input type="checkbox"> Stocker</label>
-            <label style="color:#333; text-transform:none;"><input type="checkbox"> Security</label>
+    <div id="screen-wallet" class="screen bg-slate-50 p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 italic uppercase mb-6">Wallet</h2>
+        <div class="bg-slate-900 rounded-[32px] p-8 text-white shadow-2xl mb-4">
+            <p class="text-[10px] font-900 uppercase opacity-50 tracking-widest">Available</p>
+            <h1 class="text-4xl font-900 mt-1">$450.00</h1>
+            <button class="mt-6 w-full bg-green-500 text-white font-900 py-3 rounded-xl text-[10px] uppercase tracking-widest">Withdraw to Bank</button>
         </div>
-        <button id="btn-to-test" class="btn btn-green">Next: Skill Test</button>
+        <div class="grid grid-cols-2 gap-3 mb-6">
+            <div class="bg-white p-4 rounded-2xl border border-slate-100"><p class="text-[9px] font-900 uppercase text-slate-400">Pending</p><h4 class="text-lg font-900 text-blue-600">$144.00</h4></div>
+            <div class="bg-white p-4 rounded-2xl border border-red-100"><p class="text-[9px] font-900 uppercase text-red-400">Disputed</p><h4 class="text-lg font-900 text-red-600">$72.00</h4></div>
+        </div>
+        <button id="btn-go-review" class="w-full bg-slate-200 text-slate-700 font-900 py-4 rounded-2xl uppercase text-[10px] tracking-widest">Review Last Shift</button>
     </div>
 
-    <div id="screen-test" class="screen">
-        <h2>Reliability Exam</h2>
-        <div class="test-box">
-            <p><strong>1. Math:</strong> If a customer buys $14.25 worth of goods and gives you $20.00, how much change is due?</p>
-            <input type="text" placeholder="Your answer">
-        </div>
-        <div class="test-box">
-            <p><strong>2. Common Sense:</strong> A co-worker is late and the line is getting long. Do you:</p>
-            <select><option>Wait for them</option><option>Start helping the next customer</option><option>Go on break</option></select>
-        </div>
-        <button id="btn-to-s-dash" class="btn btn-green">Finish & Submit</button>
-    </div>
-
-    <div id="screen-s-dash" class="screen">
-        <div style="display:flex; justify-content:space-between;">
-            <h3>Pro Dashboard</h3>
-            <span class="badge">Verification: Pending</span>
-        </div>
-        <div class="card" style="background:var(--accent); color:white; text-align:center; border:none;">
-            <p style="margin:0; font-size:12px;">Available Balance</p>
-            <h2 style="margin:5px 0;">$0.00</h2>
-            <p style="font-size:10px;">Funds held 48hrs post-shift for safety.</p>
-        </div>
-        <h4>Available Shifts</h4>
-        <p style="color:var(--grey); font-size:13px; text-align:center;">No shifts available in your area yet.</p>
-    </div>
-
-    <div id="screen-o-vault" class="screen">
-        <h2>Facility Setup</h2>
-        <label>Facility Name</label><input type="text">
-        <label>EIN Number</label><input type="text">
-        <label>Manager Contact</label><input type="text">
-        <button id="btn-to-o-dash" class="btn btn-blue">Open Dashboard</button>
-    </div>
-
-    <div id="screen-o-dash" class="screen">
-        <h3>Manager Portal</h3>
-        <div class="test-box" style="background:#eff6ff;">
-            <h4 style="margin:0;">Post New Shift</h4>
-            <label>Role Needed</label>
-            <select><option>Cashier</option><option>Deli Specialist</option></select>
-            <label>Pay Rate (Per Hour)</label>
-            <input type="number" placeholder="$18.00">
-            <label>Hours</label>
-            <input type="text" placeholder="e.g. 8am - 4pm">
-            <button class="btn btn-blue" style="font-size:12px; padding:10px;">Post to Map</button>
-        </div>
-        <p style="font-size:11px; color:var(--grey); text-align:center;">*All payments processed through Sidekick Escrow.</p>
+    <div id="screen-review" class="screen bg-white p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 italic uppercase">Review</h2>
+        <div id="rev-questions" class="mt-8 space-y-4"></div>
+        <textarea class="mt-4 w-full p-4 bg-slate-50 border rounded-2xl text-xs h-24 font-600" placeholder="Short comment or message..."></textarea>
+        <button id="btn-submit-review" class="mt-6 w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase text-[10px] tracking-widest">Finish Review</button>
     </div>
 
     <script>
-        // --- SECURE NAVIGATION ---
-        window.onload = function() {
-            const screens = {
-                splash: document.getElementById('screen-splash'),
-                login: document.getElementById('screen-login'),
-                role: document.getElementById('screen-role'),
-                sVault: document.getElementById('screen-s-vault'),
-                test: document.getElementById('screen-test'),
-                sDash: document.getElementById('screen-s-dash'),
-                oVault: document.getElementById('screen-o-vault'),
-                oDash: document.getElementById('screen-o-dash')
-            };
+        const screens = ['splash', 'login', 'legal', 'vault', 'map', 'wallet', 'review'];
+        const s = {};
+        screens.forEach(id => s[id] = document.getElementById('screen-' + id));
+        
+        const navBar = document.getElementById('global-nav');
+        let history = ['splash'];
+        let userRole = '';
 
-            function show(target) {
-                Object.values(screens).forEach(s => s.style.display = 'none');
-                screens[target].style.display = 'flex';
-                window.scrollTo(0,0);
+        function nav(id, storeHistory = true) {
+            Object.values(s).forEach(el => el.classList.remove('active'));
+            s[id].classList.add('active');
+            
+            // Show/Hide Nav Bar
+            if (id === 'splash' || id === 'login') navBar.classList.add('hidden');
+            else navBar.classList.remove('hidden');
+
+            if (storeHistory && history[history.length - 1] !== id) history.push(id);
+        }
+
+        // BACK BUTTON LOGIC
+        document.getElementById('btn-back').onclick = () => {
+            if (history.length > 1) {
+                history.pop(); // Remove current
+                const prev = history[history.length - 1];
+                nav(prev, false);
             }
+        };
 
-            // Button Wiring
-            document.getElementById('btn-enter').onclick = () => show('login');
-            document.getElementById('link-setup').onclick = () => show('role');
-            document.getElementById('btn-login').onclick = () => show('role');
-            document.getElementById('pick-sidekick').onclick = () => show('sVault');
-            document.getElementById('btn-to-test').onclick = () => show('test');
-            document.getElementById('btn-to-s-dash').onclick = () => show('sDash');
-            document.getElementById('pick-owner').onclick = () => show('oVault');
-            document.getElementById('btn-to-o-dash').onclick = () => show('oDash');
+        // SIGN OUT LOGIC
+        document.getElementById('btn-signout').onclick = () => {
+            if(confirm("Sign out of Sidekick Pros?")) {
+                history = ['splash'];
+                location.reload();
+            }
+        };
+
+        // NAVIGATION FLOWS
+        document.getElementById('btn-enter').onclick = () => nav('login');
+
+        document.getElementById('pick-sidekick').onclick = () => {
+            userRole = 'sidekick';
+            document.getElementById('legal-content').innerHTML = "<strong>Worker Waiver:</strong> I understand the risks of retail work and agree that Sidekick Pros is not liable for workplace injury.";
+            nav('legal');
+        };
+
+        document.getElementById('pick-manager').onclick = () => {
+            userRole = 'manager';
+            document.getElementById('legal-content').innerHTML = "<strong>Manager Agreement:</strong> I warrant a safe workplace and agree to pay all shift fees through the platform escrow.";
+            nav('legal');
+        };
+
+        document.getElementById('btn-legal-next').onclick = () => {
+            if(!document.getElementById('legal-check').checked) return alert("Accept terms to continue.");
+            userRole === 'sidekick' ? nav('vault') : nav('map');
+        };
+
+        document.getElementById('btn-vault-next').onclick = () => nav('map');
+        document.getElementById('btn-go-wallet').onclick = () => nav('wallet');
+        
+        document.getElementById('btn-go-review').onclick = () => {
+            const q = document.getElementById('rev-questions');
+            q.innerHTML = userRole === 'sidekick' ? `<p class='text-sm font-900'>Was the facility safe?</p><div class='text-xl'>⭐⭐⭐⭐⭐</div>` : `<p class='text-sm font-900'>Was the Pro reliable?</p><div class='text-xl'>⭐⭐⭐⭐⭐</div>`;
+            nav('review');
+        };
+
+        document.getElementById('btn-submit-review').onclick = () => {
+            alert("Review saved. Funds will clear per escrow terms.");
+            nav('wallet');
         };
     </script>
 </body>
