@@ -185,3 +185,54 @@
     </script>
 </body>
 </html>
+<div id="screen-vault" class="screen bg-white p-8 pt-24 overflow-y-auto">
+    <h2 class="text-2xl font-900 italic uppercase mb-2">Pro Profile</h2>
+    <p class="text-[10px] font-900 text-slate-400 uppercase mb-8 tracking-widest">Setup Your Identity</p>
+    
+    <div class="flex items-center space-x-4 mb-8 p-4 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
+        <div id="photo-preview" class="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
+            <span class="text-2xl">👤</span>
+        </div>
+        <div class="flex-1">
+            <p class="text-[10px] font-900 uppercase text-slate-500 mb-2">Professional Photo</p>
+            <label class="bg-slate-900 text-white text-[9px] font-900 px-4 py-2 rounded-lg uppercase cursor-pointer">
+                Upload
+                <input type="file" id="input-photo" accept="image/*" class="hidden" onchange="previewImage(this)">
+            </label>
+        </div>
+    </div>
+
+    <p class="text-[10px] font-900 uppercase text-slate-400 mb-2">Professional Resume (PDF)</p>
+    <input type="file" class="input-pill">
+    
+    <p class="text-[10px] font-900 uppercase text-slate-400 mt-6 mb-2">Select Your Skills:</p>
+    <div class="space-y-2 mb-8">
+        <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
+            <input type="checkbox" value="stocker" class="skill-check mr-3 w-5 h-5"> STOCKER / MERCHANDISER
+        </label>
+        <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
+            <input type="checkbox" value="cashier" class="skill-check mr-3 w-5 h-5"> CASHIER / POS EXPERT
+        </label>
+        <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-[10px]">
+            <input type="checkbox" value="deli" class="skill-check mr-3 w-5 h-5"> DELI / FOOD SPECIALIST
+        </label>
+    </div>
+    
+    <button onclick="processSkills()" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase shadow-xl">Verify & Save Profile</button>
+</div>
+
+<script>
+    // New function for Image Preview
+    function previewImage(input) {
+        const preview = document.getElementById('photo-preview');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // (Keeping all previous processSkills, nav, and selectRole logic intact below)
+</script>
