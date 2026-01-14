@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sidekick Pros | Secure Platform</title>
+    <title>Sidekick Pros | Skilled Labor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -11,187 +11,203 @@
         .screen { display: none; min-height: 100vh; width: 100%; flex-direction: column; position: relative; }
         .active { display: flex; }
         .map-bg { background: #cbd5e1 url('https://upload.wikimedia.org/wikipedia/commons/b/b0/OpenStreetMap_logo.svg') no-repeat center; background-size: cover; }
-        .legal-box { height: 120px; overflow-y: scroll; font-size: 11px; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
-        /* Hide scrollbars but allow scrolling */
-        .content-area { overflow-y: auto; flex: 1; -ms-overflow-style: none; scrollbar-width: none; }
-        .content-area::-webkit-scrollbar { display: none; }
+        .content-area { overflow-y: auto; flex: 1; padding-bottom: 80px; }
+        .legal-scroll { height: 200px; overflow-y: scroll; border: 2px solid #e2e8f0; padding: 15px; border-radius: 12px; font-size: 11px; background: #fff; }
+        .input-pill { width: 100%; padding: 1rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 1rem; font-size: 0.875rem; font-weight: 600; outline: none; margin-bottom: 0.5rem; }
+        .quiz-option { width: 100%; text-align: left; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 1rem; font-weight: 600; margin-bottom: 0.5rem; transition: 0.2s; }
+        .quiz-option.selected { border-color: #22c55e; background: #f0fdf4; }
     </style>
 </head>
 <body>
 
     <nav id="global-nav" class="hidden fixed top-0 left-0 right-0 bg-white border-b z-50 px-6 py-4 flex justify-between items-center">
-        <button id="btn-back" class="text-[10px] font-900 uppercase tracking-widest text-slate-400 flex items-center">
-            <span class="mr-1">←</span> Back
-        </button>
-        <div class="text-center">
-            <h1 class="text-xs font-900 uppercase italic tracking-tighter">Sidekick <span class="text-green-500">Pros</span></h1>
-        </div>
-        <button id="btn-signout" class="text-[10px] font-900 uppercase tracking-widest text-red-500">
-            Sign Out
-        </button>
+        <button id="btn-back" class="text-[10px] font-900 uppercase text-slate-400">← Back</button>
+        <h1 class="text-xs font-900 uppercase italic">Sidekick <span class="text-green-500">Pros</span></h1>
+        <button id="btn-signout" class="text-[10px] font-900 uppercase text-red-500">Sign Out</button>
     </nav>
 
-    <div id="screen-splash" class="screen active items-center justify-center text-center p-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.9)), url('https://images.unsplash.com/photo-1556740734-7f9a2b7a0f4d?auto=format&fit=crop&w=800');">
-        <h1 class="text-6xl font-900 text-white uppercase italic leading-none tracking-tighter">Sidekick<br><span class="text-green-500">Pros</span></h1>
-        <p class="text-white/50 text-xs mt-4 uppercase tracking-[0.3em]">Verified Retail Labor</p>
-        <button id="btn-enter" class="mt-12 w-full max-w-xs bg-green-500 text-white font-900 py-5 rounded-2xl shadow-2xl uppercase tracking-widest active:scale-95 transition-all">Get Started</button>
+    <div id="screen-splash" class="screen active items-center justify-center text-center p-6 bg-slate-900">
+        <h1 class="text-6xl font-900 text-white uppercase italic tracking-tighter">Sidekick<br><span class="text-green-500">Pros</span></h1>
+        <button id="btn-enter" class="mt-12 w-64 bg-green-500 text-white font-900 py-5 rounded-2xl uppercase tracking-widest shadow-2xl">Enter Portal</button>
     </div>
 
     <div id="screen-login" class="screen bg-white p-8 justify-center">
-        <h2 class="text-3xl font-900 italic uppercase">Identity</h2>
-        <p class="text-slate-400 text-xs font-700 uppercase mb-8">Select your account type</p>
-        <div class="space-y-4">
-            <button id="pick-sidekick" class="w-full text-left bg-white border-2 border-l-8 border-l-green-500 p-6 rounded-2xl shadow-sm">
-                <h3 class="font-900">Sidekick (Contractor)</h3>
-                <p class="text-slate-500 text-xs">Find shifts and build your reputation.</p>
-            </button>
-            <button id="pick-manager" class="w-full text-left bg-white border-2 border-l-8 border-l-blue-700 p-6 rounded-2xl shadow-sm">
-                <h3 class="font-900">Manager (Business)</h3>
-                <p class="text-slate-500 text-xs">Post shifts and hire verified pros.</p>
-            </button>
+        <h2 class="text-3xl font-900 italic uppercase">Login</h2>
+        <div class="mt-8 space-y-4 max-w-sm mx-auto w-full">
+            <input type="email" placeholder="Email" class="input-pill">
+            <input type="password" placeholder="Password" class="input-pill">
+            <button id="btn-do-login" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase tracking-widest text-xs">Sign In</button>
+            <button id="btn-go-signup" class="w-full text-blue-600 font-900 uppercase text-xs mt-4 underline">Create Account</button>
         </div>
     </div>
 
-    <div id="screen-legal" class="screen bg-white p-8 pt-24 overflow-y-auto">
-        <h2 class="text-2xl font-900 italic uppercase">Legal Bridge</h2>
-        <p id="legal-type" class="text-[10px] font-900 text-blue-600 uppercase tracking-widest mt-1">Liability Agreement</p>
-        <div class="mt-6 legal-box" id="legal-content"></div>
-        <div class="mt-6 space-y-4">
-            <label class="flex items-start space-x-3">
-                <input type="checkbox" id="legal-check" class="mt-1 w-5 h-5 accent-blue-600">
-                <span class="text-[10px] text-slate-500 font-700 uppercase leading-tight">I agree to all liability waivers and terms of service.</span>
-            </label>
-            <input type="text" id="legal-sig" placeholder="Type Full Name to Sign" class="w-full p-4 bg-slate-50 border rounded-xl text-xs font-900 italic">
-        </div>
-        <button id="btn-legal-next" class="mt-8 w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase tracking-widest text-xs">Accept & Continue</button>
-    </div>
-
-    <div id="screen-vault" class="screen bg-white p-8 pt-24 overflow-y-auto pb-20">
-        <h2 class="text-2xl font-900 text-green-600 italic uppercase">The Pro Vault</h2>
-        <div class="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-100">
-            <p class="text-[10px] font-900 text-blue-800 uppercase mb-2 font-bold italic">Safety: Checkr.com Integration</p>
-            <button onclick="window.open('https://checkr.com')" class="w-full bg-blue-600 text-white text-[10px] font-900 py-3 rounded-xl uppercase">Start Background Check</button>
-        </div>
-        <div class="mt-8 space-y-6">
-            <label class="block"><span class="text-[10px] font-900 text-slate-400 uppercase tracking-widest">TABC / Food Cert</span><input type="file" class="mt-1 block w-full text-xs"></label>
-            <hr class="border-slate-100">
-            <div>
-                <h4 class="text-xs font-900 uppercase mb-3 tracking-widest">Work History</h4>
-                <div class="space-y-3">
-                    <input type="text" placeholder="Previous Store (e.g. Circle K)" class="w-full p-4 bg-slate-50 border rounded-xl text-xs font-600 outline-none focus:border-green-500">
-                    <textarea placeholder="List specific retail skills (NCR, Deli, Stocking)" class="w-full p-4 bg-slate-50 border rounded-xl text-xs font-600 h-20 outline-none focus:border-green-500"></textarea>
-                </div>
+    <div id="screen-signup" class="screen bg-white p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 italic uppercase">Master Agreement</h2>
+        <div class="mt-6 max-w-md mx-auto w-full content-area">
+            <input type="text" id="reg-name" placeholder="Legal Full Name" class="input-pill">
+            <div class="legal-scroll text-slate-600 mb-6">
+                <strong>1. LIABILITY:</strong> User assumes all risk for workplace injury. Sidekick Pros is a platform, not an employer.<br><br>
+                <strong>2. DATA RELEASE:</strong> User authorizes Sidekick Pros to display name, resume, and ratings on the public web for shift procurement.<br><br>
+                <strong>3. VETTING:</strong> Sidekick warrants all uploaded certs are real.
             </div>
+            <label class="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl mb-6">
+                <input type="checkbox" id="signup-check" class="mt-1 w-6 h-6 accent-green-600">
+                <span class="text-[10px] text-slate-500 font-800 uppercase italic">I Agree to the Liability Waiver & Data Release.</span>
+            </label>
+            <button id="btn-signup-next" class="w-full bg-blue-700 text-white font-900 py-5 rounded-2xl uppercase tracking-widest text-[11px]">Sign & Continue</button>
         </div>
-        <button id="btn-vault-next" class="mt-10 w-full bg-green-500 text-white font-900 py-5 rounded-2xl uppercase">Submit Portfolio</button>
+    </div>
+
+    <div id="screen-role" class="screen bg-slate-50 p-8 pt-24 justify-center items-center">
+        <h2 class="text-2xl font-900 italic uppercase mb-10">Choose Identity</h2>
+        <div class="w-full max-w-sm space-y-4">
+            <button id="pick-sidekick" class="w-full bg-white border-2 border-l-8 border-l-green-500 p-8 rounded-3xl text-left shadow-sm">
+                <h3 class="font-900 text-xl">Sidekick</h3>
+                <p class="text-slate-500 text-xs">I want to find shifts.</p>
+            </button>
+            <button id="pick-manager" class="w-full bg-white border-2 border-l-8 border-l-blue-700 p-8 rounded-3xl text-left shadow-sm">
+                <h3 class="font-900 text-xl">Manager</h3>
+                <p class="text-slate-500 text-xs">I want to post shifts.</p>
+            </button>
+        </div>
+    </div>
+
+    <div id="screen-vault" class="screen bg-white p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 text-green-600 italic uppercase mb-6">Pro Profile</h2>
+        <div class="content-area max-w-md mx-auto w-full">
+            <label class="text-[10px] font-900 uppercase text-slate-400 mb-2 block">Upload Resume (PDF)</label>
+            <input type="file" class="input-pill">
+            
+            <p class="text-[10px] font-900 uppercase text-slate-400 mt-4 mb-2">Select Your Skills (Check all that apply)</p>
+            <div class="space-y-2 mb-6">
+                <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-xs">
+                    <input type="checkbox" value="stocker" class="skill-check mr-3 w-5 h-5"> STOCKER / MERCHANDISER
+                </label>
+                <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-xs">
+                    <input type="checkbox" value="cashier" class="skill-check mr-3 w-5 h-5"> CASHIER / POS EXPERT
+                </label>
+                <label class="flex items-center p-4 bg-slate-50 border rounded-xl font-800 text-xs">
+                    <input type="checkbox" value="deli" class="skill-check mr-3 w-5 h-5"> DELI / FOOD SPECIALIST
+                </label>
+            </div>
+            
+            <button id="btn-vault-finish" class="w-full bg-green-500 text-white font-900 py-5 rounded-2xl uppercase tracking-widest shadow-xl">Continue</button>
+        </div>
+    </div>
+
+    <div id="screen-quiz" class="screen bg-white p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 text-orange-500 italic uppercase">Skill Verification</h2>
+        <p id="quiz-title" class="text-slate-400 text-[10px] font-900 uppercase mt-1 mb-8">Role Logic Test</p>
+        
+        <div class="content-area max-w-md mx-auto w-full">
+            <div class="mb-8">
+                <p class="font-900 text-lg mb-4" id="quiz-question">Question goes here?</p>
+                <div id="quiz-options">
+                    </div>
+            </div>
+            <button id="btn-quiz-next" class="w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase tracking-widest text-xs">Submit Answer</button>
+        </div>
+    </div>
+
+    <div id="screen-m-post" class="screen bg-white p-8 pt-24 overflow-y-auto">
+        <h2 class="text-2xl font-900 text-blue-700 italic uppercase mb-8">Post Shift</h2>
+        <div class="content-area max-w-md mx-auto w-full">
+            <input type="text" placeholder="Store Name / Location" class="input-pill">
+            <input type="number" placeholder="Pay Rate ($/hr)" class="input-pill text-green-600 font-900">
+            <textarea placeholder="Job Requirements..." class="input-pill h-32"></textarea>
+            <button id="btn-post-finish" class="w-full bg-blue-700 text-white font-900 py-5 rounded-2xl uppercase shadow-xl">Publish to Map</button>
+        </div>
     </div>
 
     <div id="screen-map" class="screen relative h-screen">
         <div class="flex-1 map-bg"></div>
-        <div class="absolute bottom-24 left-6 right-6 p-6 bg-white rounded-3xl shadow-2xl border border-slate-100">
-            <div class="flex justify-between items-center">
-                <h3 class="font-900 text-lg uppercase italic">7-Eleven #402</h3>
-                <span class="text-green-600 font-900">$18/hr</span>
-            </div>
-            <button id="btn-apply" class="mt-4 w-full bg-blue-700 text-white font-900 py-4 rounded-xl uppercase text-xs tracking-widest shadow-lg">Apply for Shift</button>
+        <div class="absolute bottom-10 left-6 right-6 p-6 bg-white rounded-3xl shadow-2xl border">
+            <h3 class="font-900 text-xl italic">Ready to Work</h3>
+            <p class="text-slate-400 text-xs font-700 uppercase mb-4">View shifts near you</p>
+            <button class="w-full bg-blue-700 text-white font-900 py-4 rounded-xl text-xs uppercase tracking-widest">Refresh Map</button>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-around items-center h-20">
-            <button class="text-blue-600 font-900 text-[10px] uppercase">Map</button>
-            <button id="btn-go-wallet" class="text-slate-400 font-900 text-[10px] uppercase">Wallet</button>
-        </div>
-    </div>
-
-    <div id="screen-wallet" class="screen bg-slate-50 p-8 pt-24 overflow-y-auto">
-        <h2 class="text-2xl font-900 italic uppercase mb-6">Wallet</h2>
-        <div class="bg-slate-900 rounded-[32px] p-8 text-white shadow-2xl mb-4">
-            <p class="text-[10px] font-900 uppercase opacity-50 tracking-widest">Available</p>
-            <h1 class="text-4xl font-900 mt-1">$450.00</h1>
-            <button class="mt-6 w-full bg-green-500 text-white font-900 py-3 rounded-xl text-[10px] uppercase tracking-widest">Withdraw to Bank</button>
-        </div>
-        <div class="grid grid-cols-2 gap-3 mb-6">
-            <div class="bg-white p-4 rounded-2xl border border-slate-100"><p class="text-[9px] font-900 uppercase text-slate-400">Pending</p><h4 class="text-lg font-900 text-blue-600">$144.00</h4></div>
-            <div class="bg-white p-4 rounded-2xl border border-red-100"><p class="text-[9px] font-900 uppercase text-red-400">Disputed</p><h4 class="text-lg font-900 text-red-600">$72.00</h4></div>
-        </div>
-        <button id="btn-go-review" class="w-full bg-slate-200 text-slate-700 font-900 py-4 rounded-2xl uppercase text-[10px] tracking-widest">Review Last Shift</button>
-    </div>
-
-    <div id="screen-review" class="screen bg-white p-8 pt-24 overflow-y-auto">
-        <h2 class="text-2xl font-900 italic uppercase">Review</h2>
-        <div id="rev-questions" class="mt-8 space-y-4"></div>
-        <textarea class="mt-4 w-full p-4 bg-slate-50 border rounded-2xl text-xs h-24 font-600" placeholder="Short comment or message..."></textarea>
-        <button id="btn-submit-review" class="mt-6 w-full bg-slate-900 text-white font-900 py-5 rounded-2xl uppercase text-[10px] tracking-widest">Finish Review</button>
     </div>
 
     <script>
-        const screens = ['splash', 'login', 'legal', 'vault', 'map', 'wallet', 'review'];
+        const screens = ['splash', 'login', 'signup', 'role', 'vault', 'quiz', 'm-post', 'map'];
         const s = {};
         screens.forEach(id => s[id] = document.getElementById('screen-' + id));
-        
         const navBar = document.getElementById('global-nav');
         let history = ['splash'];
-        let userRole = '';
+        let selectedSkills = [];
 
         function nav(id, storeHistory = true) {
             Object.values(s).forEach(el => el.classList.remove('active'));
             s[id].classList.add('active');
-            
-            // Show/Hide Nav Bar
-            if (id === 'splash' || id === 'login') navBar.classList.add('hidden');
+            if (['splash', 'login', 'signup'].includes(id)) navBar.classList.add('hidden');
             else navBar.classList.remove('hidden');
-
             if (storeHistory && history[history.length - 1] !== id) history.push(id);
         }
 
-        // BACK BUTTON LOGIC
         document.getElementById('btn-back').onclick = () => {
-            if (history.length > 1) {
-                history.pop(); // Remove current
-                const prev = history[history.length - 1];
-                nav(prev, false);
-            }
+            if (history.length > 1) { history.pop(); nav(history[history.length - 1], false); }
         };
+        document.getElementById('btn-signout').onclick = () => { location.reload(); };
 
-        // SIGN OUT LOGIC
-        document.getElementById('btn-signout').onclick = () => {
-            if(confirm("Sign out of Sidekick Pros?")) {
-                history = ['splash'];
-                location.reload();
-            }
-        };
-
-        // NAVIGATION FLOWS
         document.getElementById('btn-enter').onclick = () => nav('login');
+        document.getElementById('btn-go-signup').onclick = () => nav('signup');
+        document.getElementById('btn-do-login').onclick = () => nav('map');
 
-        document.getElementById('pick-sidekick').onclick = () => {
-            userRole = 'sidekick';
-            document.getElementById('legal-content').innerHTML = "<strong>Worker Waiver:</strong> I understand the risks of retail work and agree that Sidekick Pros is not liable for workplace injury.";
-            nav('legal');
+        document.getElementById('btn-signup-next').onclick = () => {
+            if(!document.getElementById('signup-check').checked || !document.getElementById('reg-name').value) return alert("Complete the waiver.");
+            nav('role');
         };
 
-        document.getElementById('pick-manager').onclick = () => {
-            userRole = 'manager';
-            document.getElementById('legal-content').innerHTML = "<strong>Manager Agreement:</strong> I warrant a safe workplace and agree to pay all shift fees through the platform escrow.";
-            nav('legal');
+        document.getElementById('pick-sidekick').onclick = () => nav('vault');
+        document.getElementById('pick-manager').onclick = () => nav('m-post');
+
+        document.getElementById('btn-vault-finish').onclick = () => {
+            const checks = document.querySelectorAll('.skill-check:checked');
+            selectedSkills = Array.from(checks).map(c => c.value);
+            
+            // Logic Gate: If cashier or deli is picked, trigger Quiz. Otherwise skip.
+            if (selectedSkills.includes('cashier') || selectedSkills.includes('deli')) {
+                loadQuiz();
+                nav('quiz');
+            } else {
+                nav('map');
+            }
         };
 
-        document.getElementById('btn-legal-next').onclick = () => {
-            if(!document.getElementById('legal-check').checked) return alert("Accept terms to continue.");
-            userRole === 'sidekick' ? nav('vault') : nav('map');
+        function loadQuiz() {
+            const qObj = document.getElementById('quiz-question');
+            const oObj = document.getElementById('quiz-options');
+            
+            if (selectedSkills.includes('cashier')) {
+                qObj.innerText = "A customer buys items totaling $14.50. They give you a $20 bill. What is the correct change?";
+                oObj.innerHTML = `
+                    <button class="quiz-option" onclick="selectOption(this)">$5.50</button>
+                    <button class="quiz-option" onclick="selectOption(this)">$6.50</button>
+                    <button class="quiz-option" onclick="selectOption(this)">$4.50</button>
+                `;
+            } else if (selectedSkills.includes('deli')) {
+                qObj.innerText = "What is the most important step before preparing a fresh sandwich for a customer?";
+                oObj.innerHTML = `
+                    <button class="quiz-option" onclick="selectOption(this)">Washing hands and putting on fresh gloves</button>
+                    <button class="quiz-option" onclick="selectOption(this)">Asking for payment first</button>
+                    <button class="quiz-option" onclick="selectOption(this)">Slicing the bread as fast as possible</button>
+                `;
+            }
+        }
+
+        function selectOption(btn) {
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        document.getElementById('btn-quiz-next').onclick = () => {
+            if(!document.querySelector('.quiz-option.selected')) return alert("Select an answer.");
+            alert("Quiz passed! Your logic score has been added to your Pro profile.");
+            nav('map');
         };
 
-        document.getElementById('btn-vault-next').onclick = () => nav('map');
-        document.getElementById('btn-go-wallet').onclick = () => nav('wallet');
-        
-        document.getElementById('btn-go-review').onclick = () => {
-            const q = document.getElementById('rev-questions');
-            q.innerHTML = userRole === 'sidekick' ? `<p class='text-sm font-900'>Was the facility safe?</p><div class='text-xl'>⭐⭐⭐⭐⭐</div>` : `<p class='text-sm font-900'>Was the Pro reliable?</p><div class='text-xl'>⭐⭐⭐⭐⭐</div>`;
-            nav('review');
-        };
+        document.getElementById('btn-post-finish').onclick = () => { alert("Shift Live!"); nav('map'); };
 
-        document.getElementById('btn-submit-review').onclick = () => {
-            alert("Review saved. Funds will clear per escrow terms.");
-            nav('wallet');
-        };
     </script>
 </body>
 </html>
